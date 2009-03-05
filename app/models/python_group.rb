@@ -1,0 +1,2 @@
+class PythonGroup < Group
+end

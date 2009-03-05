@@ -1,3 +1,4 @@
 class Location < ActiveRecord::Base
-  has_one :event
+  has_many :events
+  has_many :groups, :through => :events
 end

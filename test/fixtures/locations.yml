@@ -1,15 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  address: MyString
+  id: 1
+  name: c location
+  address: c location address
   latitude: 
   longitude: 
-  notes: MyString
+  notes: c location notes
 
 two:
-  name: MyString
-  address: MyString
+  id: 2
+  name: a location
+  address: a location address
   latitude: 
   longitude: 
-  notes: MyString
+  notes: a location notes
+
+three:
+  id: 3
+  name: b location
+  address: b location address
+  latitude:
+  longitude:
+  noteS: b location notes

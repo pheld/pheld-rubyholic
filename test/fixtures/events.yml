@@ -1,13 +1,28 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  description: MyString
+  id: 1
+  name: c event
+  description: c description
   start_date: 2009-02-27 10:17:11
   end_date: 2009-02-27 10:17:11
+  group_id: 2
+  location_id: 3
 
 two:
-  name: MyString
-  description: MyString
+  id: 2
+  name: a event
+  description: a description
   start_date: 2009-02-27 10:17:11
   end_date: 2009-02-27 10:17:11
+  group_id: 3
+  location_id: 1
+  
+three:
+  id: 3
+  name: b event
+  description: b description
+  start_date: 2009-02-27 10:17:11
+  end_date: 2009-02-27 10:17:11
+  group_id: 1
+  location_id: 2

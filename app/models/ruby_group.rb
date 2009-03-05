@@ -1,0 +1,2 @@
+class RubyGroup < Group
+end
