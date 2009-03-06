@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
+    @groups = Group.by_name
     @events = Event.find(:all)
 
     respond_to do |format|
@@ -24,6 +25,7 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.xml
   def new
+    @groups = Group.by_name
     @event = Event.new
 
     respond_to do |format|

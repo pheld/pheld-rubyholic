@@ -6,6 +6,14 @@ class GroupsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:groups)
   end
+  
+  test "should show existing groups in index" do
+    get :index
+    assert_response :success
+    assert_match("a group", @response.body)
+    assert_match("b group", @response.body)
+    assert_match("c group", @response.body)
+  end
 
   test "should get new" do
     get :new

@@ -6,7 +6,15 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:events)
   end
-
+  
+  test "should show existing events in index" do
+    get :index
+    assert_response :success
+    assert_match("a event", @response.body)
+    assert_match("b event", @response.body)
+    assert_match("c event", @response.body)
+  end
+  
   test "should get new" do
     get :new
     assert_response :success

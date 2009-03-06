@@ -3,11 +3,17 @@
 one:
   id: 1
   name: c group
+  url: http://c.group.com
+  description: c group description
 
 two:
   id: 2
   name: a group
+  url: http://a.group.com
+  description: a group description
 
 three:
   id: 3
   name: b group
+  url: http://b.group.com
+  description: b group description

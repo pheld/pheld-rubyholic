@@ -1,8 +1,23 @@
-<p>
-  <b>Name:</b>
-  <%=h @group.name %>
-</p>
-
+<table border=1>
+  <tr>
+    <td>
+      <p>
+        <b>Name:</b>
+        <%=h @group.name %><br>
+        <b>URL:</b>
+        <%=h @group.url %><br>
+        <b>Description:</b>
+        <%=h @group.description %>
+      </p>
+    </td>
+    <td>MAP GOES HERE</td>
+  </tr>
+  <% @group.events.each do |event| %>
+    <tr>
+      <td><%= link_to 'Show', event %>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

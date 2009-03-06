@@ -1,16 +1,16 @@
-<h1>Listing groups</h1>
+<h1>Rubyholic</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
+<% form_tag groups_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
+<table border=1>
 <% for group in @groups %>
   <tr>
-    <td><%=h group.name %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to group.name, group %></td>
   </tr>
 <% end %>
 </table>

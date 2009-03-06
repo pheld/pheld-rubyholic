@@ -7,6 +7,14 @@ class LocationsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:locations)
   end
 
+  test "should show existing locations in index" do
+    get :index
+    assert_response :success
+    assert_match("a location", @response.body)
+    assert_match("b location", @response.body)
+    assert_match("c location", @response.body)
+  end
+
   test "should get new" do
     get :new
     assert_response :success
