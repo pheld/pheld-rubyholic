@@ -42,6 +42,14 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(params[:location])
 
+    # get the lat/long from geokit
+    address = params[:location][:address]
+    coords = Location.coords_from_address(address)
+    unless coords.nil?
+      @location.latitude = coords[0]
+      @location.longitude = coords[1]
+    end
+
     respond_to do |format|
       if @location.save
         flash[:notice] = 'Location was successfully created.'
@@ -58,7 +66,15 @@ class LocationsController < ApplicationController
   # PUT /locations/1.xml
   def update
     @location = Location.find(params[:id])
-
+    
+    # get the updated lat/long from geokit
+    address = params[:location][:address]
+    new_coords = Location.coords_from_address(address)
+    unless new_coords.nil?
+      @location.latitude = new_coords[0]
+      @location.longitude = new_coords[1]
+    end
+    
     respond_to do |format|
       if @location.update_attributes(params[:location])
         flash[:notice] = 'Location was successfully updated.'

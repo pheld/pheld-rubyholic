@@ -22,4 +22,4 @@ three:
   address: b location address
   latitude:
   longitude:
-  noteS: b location notes
+  notes: b location notes
