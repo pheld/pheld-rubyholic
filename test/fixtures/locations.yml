@@ -12,8 +12,8 @@ two:
   id: 2
   name: a location
   address: a location address
-  latitude: 
-  longitude: 
+  latitude: 47.618235
+  longitude: -122.350866
   notes: a location notes
 
 three:

@@ -62,4 +62,14 @@ class GroupsControllerTest < ActionController::TestCase
     assert_equal(2, assigns(:events).length)
     assert_equal('b event', assigns(:events)[0].name)
   end
+  
+  test "should generate the google map url if there are events associated with this group" do
+    get :show, :id => groups(:one).id
+    assert_response :success
+    
+    # assert that the @google_maps_url variable has been assigned
+    assert assigns(:google_maps_url)
+    
+    assert_equal("http://maps.google.com/staticmap?size=512x512\&markers=47.618235,-122.350866%7C47.618235,-122.350866&key=#{GOOGLE_MAPS_KEY}&sensor=false", assigns(:google_maps_url))
+  end
 end
