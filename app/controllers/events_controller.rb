@@ -47,8 +47,12 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
-    @event.group_id = params[:group_id]
-    @event.location_id = params[:location_id]
+
+    group = Group.find(params[:group_id]) unless params[:group_id].nil?
+    @event.group = group unless group.nil?
+
+    location = Location.find(params[:location_id]) unless params[:location_id].nil?
+    @event.location = location unless location.nil?
 
     respond_to do |format|
       if @event.save
@@ -66,8 +70,12 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
-    @event.group_id = params[:group_id]
-    @event.location_id = params[:location_id]
+
+    group = Group.find(params[:group_id]) unless params[:group_id].nil?
+    @event.group = group unless group.nil?
+
+    location = Location.find(params[:location_id]) unless params[:location_id].nil?
+    @event.location = location unless location.nil?
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
