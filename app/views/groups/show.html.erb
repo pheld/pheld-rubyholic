@@ -1,22 +1,28 @@
 <table border=1>
   <tr>
+    <td colspan=2 align=center><h1><%=h @group.name %></h1></td>
+  </tr>
+  <tr>
     <td>
       <p>
-        <b>Name:</b>
-        <%=h @group.name %><br>
         <b>URL:</b>
         <%=h @group.url %><br>
         <b>Description:</b>
         <%=h @group.description %>
       </p>
     </td>
-    <td>MAP GOES HERE</td>
+    <% unless @google_maps_url.nil? %>
+      <td><img src="<%=@google_maps_url%>"></td>
+    <% end %>
   </tr>
-  <% @group.events.each do |event| %>
+  <% unless @events.nil? 
+    @events.each do |event| %>
     <tr>
-      <td><%= link_to 'Show', event %>
+      <td colspan=2 align=center><%= link_to event.name, event_path(event) %>
     </tr>
-  <% end %>
+  <% end 
+    end
+  %>
 </table>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |

@@ -14,6 +14,14 @@ class GroupsController < ApplicationController
   # GET /groups/1.xml
   def show
     @group = Group.find(params[:id])
+    
+    @events = @group.events
+    
+    @google_maps_url = nil
+    
+    unless (@events.nil? || (@events.length == 0))
+      @google_maps_url = generate_google_maps_url(@events)
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -81,5 +89,25 @@ class GroupsController < ApplicationController
       format.html { redirect_to(groups_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  
+  def generate_google_maps_url(events)
+    return nil unless (!events.nil? && events.length > 0)
+      
+    map_url = "http://maps.google.com/staticmap?size=512x512\&markers="
+    
+    events.each do |event|
+      map_url += event.location.latitude.to_s + "," + event.location.longitude.to_s
+      
+      unless event == events.last
+        map_url += "%7C"
+      end
+    end
+    
+    map_url += "\&key=#{GOOGLE_MAPS_KEY}&sensor=false"
+    
+    map_url
   end
 end

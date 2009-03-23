@@ -50,4 +50,16 @@ class GroupsControllerTest < ActionController::TestCase
 
     assert_redirected_to groups_path
   end
+  
+  test "should look up list of events for shown group" do
+    get :show, :id => groups(:one).id
+    assert_response :success
+    
+    # assert that the @events variable has been assigned
+    assert assigns(:events)
+    
+    # assert that the correct events are associated with this group
+    assert_equal(2, assigns(:events).length)
+    assert_equal('b event', assigns(:events)[0].name)
+  end
 end

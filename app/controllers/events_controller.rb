@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   # GET /events.xml
   def index
     @groups = Group.by_name
+    @locations = Location.find(:all)
     @events = Event.find(:all)
 
     respond_to do |format|
@@ -26,6 +27,7 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @groups = Group.by_name
+    @locations = Location.find(:all)
     @event = Event.new
 
     respond_to do |format|
@@ -36,6 +38,8 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @groups = Group.by_name
+    @locations = Location.find(:all)
     @event = Event.find(params[:id])
   end
 
@@ -43,6 +47,8 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
+    @event.group_id = params[:group_id]
+    @event.location_id = params[:location_id]
 
     respond_to do |format|
       if @event.save
@@ -60,6 +66,8 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
+    @event.group_id = params[:group_id]
+    @event.location_id = params[:location_id]
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

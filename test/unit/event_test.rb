@@ -33,7 +33,8 @@ class EventTest < ActiveSupport::TestCase
   test "events can be sorted by location name" do
     events = Event.by_location_name
     assert_equal("b event", events[0].name)
-    assert_equal("c event", events[1].name)
-    assert_equal("a event", events[2].name)
+    assert_equal("q event", events[1].name)
+    assert_equal("c event", events[2].name)
+    assert_equal("a event", events[3].name)
   end
 end

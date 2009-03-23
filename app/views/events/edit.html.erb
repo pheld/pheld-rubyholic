@@ -20,6 +20,14 @@
     <%= f.datetime_select :end_date %>
   </p>
   <p>
+    <%= f.label :group %><br />
+    <%= select_tag 'group_id', options_for_select(@groups.collect{ |g| [g.name, g.id] }) %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= select_tag 'location_id', options_for_select(@locations.collect{ |l| [l.name, l.id] }) %>
+  </p>
+  <p>
     <%= f.submit "Update" %>
   </p>
 <% end %>

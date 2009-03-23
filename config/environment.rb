@@ -7,6 +7,8 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
+GOOGLE_MAPS_KEY = 'ABQIAAAAPt2G1CqJcJWX10mN6k6KWRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRlUKUkG3Iv16E5Z443GZ4BJURVRw'
+
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -78,6 +80,9 @@ Rails::Initializer.run do |config|
   
   # Configure WillPaginate
   config.gem "mislav-will_paginate", :lib => 'will_paginate', :source => 'http://gems.github.com'
+  
+  # Configure Shoulda
+  config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
 end
 
 require "will_paginate"

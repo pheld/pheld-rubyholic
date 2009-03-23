@@ -18,6 +18,15 @@
   <%=h @event.end_date %>
 </p>
 
+<p>
+  <b>Group</b>
+  <%= link_to @event.group.name, group_path(@event.group) %>
+</p>
+
+<p>
+  <b>Location</b>
+  <%= link_to @event.location.name, location_path(@event.location) %>
+</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
