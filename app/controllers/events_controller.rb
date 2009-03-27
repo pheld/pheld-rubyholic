@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index
     @groups = Group.by_name
     @locations = Location.find(:all)
-    @events = Event.find(:all)
+    @events = Event.paginate :page => params[:page], :order => 'name ASC'
 
     respond_to do |format|
       format.html # index.html.erb

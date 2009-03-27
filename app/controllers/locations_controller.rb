@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.xml
   def index
-    @locations = Location.find(:all)
+    @locations = Location.paginate :page => params[:page], :order => 'name ASC'
 
     respond_to do |format|
       format.html # index.html.erb

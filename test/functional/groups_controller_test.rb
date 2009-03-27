@@ -72,4 +72,37 @@ class GroupsControllerTest < ActionController::TestCase
     
     assert_equal("http://maps.google.com/staticmap?size=512x512\&markers=47.618235,-122.350866%7C47.618235,-122.350866&key=#{GOOGLE_MAPS_KEY}&sensor=false", assigns(:google_maps_url))
   end
+  
+  test "should return groups in ascending order by default" do
+  end
+  
+  test "should return groups in the specified order" do
+  end
+  
+  test "should return the matching groups when a search term is specified" do
+    get :index, :search => 'c'
+    
+    # only the 'c croup' should be returned
+    assert_no_match(/a\ group/, @response.body)
+    assert_no_match(/b\ group/, @response.body)
+    assert_match("c group", @response.body)
+  end
+  
+  test "should return the first page of groups using will_paginate" do
+    get :index, :sort_dir => 'ASC', :page_size => '2'
+    
+    # only the first two groups are shown
+    assert_match("a group", @response.body)
+    assert_match("b group", @response.body)
+    assert_no_match(/c\ group/, @response.body)
+  end
+
+  test "should return the second page of groups using will_paginate" do
+    get :index, :sort_dir => 'ASC', :page_size => '2', :page => '2'
+    
+    # only the first two groups are shown
+    assert_no_match(/a\ group/, @response.body)
+    assert_no_match(/b\ group/, @response.body)
+    assert_match("c group", @response.body)
+  end
 end

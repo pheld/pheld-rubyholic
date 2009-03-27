@@ -2,7 +2,21 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-    @groups = Group.search(params[:search])
+    # figure out the sort direction
+    sort_dir = params[:sort_dir] ? params[:sort_dir].capitalize : 'ASC'
+    # sort_dir = 'ASC'
+    # sort_dir = params[:sort_dir].capitalize unless params[:sort_dir].nil?
+    # params[:sort_dir] = sort_dir
+
+    # get the page size
+    page_size = params[:page_size] ? params[:page_size] : DEFAULT_PAGE_SIZE
+    
+    # search for the groups, with pagination
+    if params[:search].blank?
+      @groups = Group.paginate :page => params[:page], :per_page => page_size, :order => "name #{sort_dir}"
+    else
+      @groups = Group.search params[:search], :page => params[:page], :per_page => page_size, :order => "name #{sort_dir}"
+    end
 
     respond_to do |format|
       format.html # index.html.erb

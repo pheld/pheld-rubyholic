@@ -5,4 +5,9 @@ class Event < ActiveRecord::Base
   named_scope :by_name, :order => 'name'
   named_scope :by_group_name, :include => [:group], :order => 'groups.name'
   named_scope :by_location_name, :include => [:location], :order => 'locations.name'
+  
+  # will-paginate
+  def self.per_page
+    5
+  end
 end

@@ -8,12 +8,27 @@
 <% end %>
 
 <table border=1>
+  <tr>
+    <td>
+      <% if params[:sort_dir].blank? %>
+        <%= link_to "Sort", groups_path(:sort_dir => 'DESC') %>
+      <% elsif params[:sort_dir] == 'ASC' %>
+        <%= link_to "Sort", groups_path(:sort_dir => 'DESC') %>
+      <% else %>
+        <%= link_to "Sort", groups_path(:sort_dir => 'ASC') %>
+      <% end %>
+    </td>
+  </tr>
 <% for group in @groups %>
   <tr>
     <td><%= link_to group.name, group %></td>
   </tr>
 <% end %>
 </table>
+
+<br />
+
+<%= will_paginate @groups %>
 
 <br />
 

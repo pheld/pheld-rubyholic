@@ -8,6 +8,7 @@
 RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
 GOOGLE_MAPS_KEY = 'ABQIAAAAPt2G1CqJcJWX10mN6k6KWRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRlUKUkG3Iv16E5Z443GZ4BJURVRw'
+DEFAULT_PAGE_SIZE = 5
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')

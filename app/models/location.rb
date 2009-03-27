@@ -6,6 +6,20 @@ class Location < ActiveRecord::Base
   
   has_many :events
   has_many :groups, :through => :events
+  
+  # Sphinx index definitions
+  define_index do
+    indexes name, :sortable => true
+    indexes address
+    indexes notes, :sortable => true
+    
+    has created_at, updated_at, longitude, latitude
+  end
+  
+  # will-paginate
+  def self.per_page
+    5
+  end
 
   def self.coords_from_address(address)
     result = nil
