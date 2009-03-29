@@ -22,10 +22,11 @@ class LocationTest < ActiveSupport::TestCase
     end
   end
   
+  # NEEDS A CONNECTION TO THE INTERNETS! :(
   test "a location can return latitude and longitude given a valid address" do
     # the correct lat/lng should be 47.618235/-122.350866
     coords = Location.coords_from_address(@valid_location.address)
-    assert_equal(coords[0], 47.618235)
-    assert_equal(coords[1], -122.350866)
+    assert_equal(47.618235, coords[0])
+    assert_equal(-122.350866, coords[1])
   end
 end

@@ -22,10 +22,10 @@ class EventsControllerTest < ActionController::TestCase
 
   test "should create event" do
     assert_difference('Event.count') do
-      post :create, :event => { }
+      post :create, :group_id => 1, :location_id => 1, :event => { }
     end
 
-    assert_redirected_to event_path(assigns(:event))
+    assert_redirected_to group_path(Group.find(1))
   end
 
   test "should show event" do
