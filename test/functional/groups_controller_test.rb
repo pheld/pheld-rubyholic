@@ -74,15 +74,27 @@ class GroupsControllerTest < ActionController::TestCase
   end
   
   test "should return groups in ascending order by default" do
+    get :index, :page_size => '1'
+    
+    # only the 'c group' should be returned
+    assert_match("a group", @response.body)
+    assert_no_match(/b\ group/, @response.body)
+    assert_no_match(/c\ group/, @response.body)
   end
   
   test "should return groups in the specified order" do
+    get :index, :sort_dir => 'DESC', :page_size => '1'
+    
+    # only the 'c group' should be returned
+    assert_no_match(/a\ group/, @response.body)
+    assert_no_match(/b\ group/, @response.body)
+    assert_match("c group", @response.body)
   end
   
   test "should return the matching groups when a search term is specified" do
-    get :index, :search => 'c'
+    get :index, :search => "c group"
     
-    # only the 'c croup' should be returned
+    # only the 'c group' should be returned
     assert_no_match(/a\ group/, @response.body)
     assert_no_match(/b\ group/, @response.body)
     assert_match("c group", @response.body)

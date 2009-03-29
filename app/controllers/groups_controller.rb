@@ -4,9 +4,6 @@ class GroupsController < ApplicationController
   def index
     # figure out the sort direction
     sort_dir = params[:sort_dir] ? params[:sort_dir].capitalize : 'ASC'
-    # sort_dir = 'ASC'
-    # sort_dir = params[:sort_dir].capitalize unless params[:sort_dir].nil?
-    # params[:sort_dir] = sort_dir
 
     # get the page size
     page_size = params[:page_size] ? params[:page_size] : DEFAULT_PAGE_SIZE
@@ -17,7 +14,12 @@ class GroupsController < ApplicationController
     else
       @groups = Group.search params[:search], :page => params[:page], :per_page => page_size, :order => "name #{sort_dir}"
     end
-
+    
+    # unless @groups.nil?
+    #   puts "found #{@groups.size.to_s} groups"
+    #   puts "first name: #{@groups[0].name}"
+    # end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @groups }

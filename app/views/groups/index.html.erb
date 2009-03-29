@@ -9,9 +9,9 @@
 
 <table border=1>
   <tr>
-    <td>
+    <td align="center">
       <% if params[:sort_dir].blank? %>
-        <%= link_to "Sort", groups_path(:sort_dir => 'DESC') %>
+        <b><%= link_to "Sort", groups_path(:sort_dir => 'DESC') %></b>
       <% elsif params[:sort_dir] == 'ASC' %>
         <%= link_to "Sort", groups_path(:sort_dir => 'DESC') %>
       <% else %>
@@ -19,10 +19,12 @@
       <% end %>
     </td>
   </tr>
+<% unless @groups.nil? %>
 <% for group in @groups %>
   <tr>
     <td><%= link_to group.name, group %></td>
   </tr>
+<% end %>
 <% end %>
 </table>
 

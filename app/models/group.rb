@@ -11,6 +11,8 @@ class Group < ActiveRecord::Base
     indexes description
     
     has created_at, updated_at, type
+    
+    set_property :delta => true
   end
 
   # will-paginate
